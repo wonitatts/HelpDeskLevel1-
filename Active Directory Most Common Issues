@@ -1,0 +1,205 @@
+Detailed Guide for Level 1 IT Support Technicians: Active Directory Basics
+
+1. Understanding User Accounts
+
+Key Concepts:
+
+User Account Creation: Each user needs an account to access domain resources.
+
+Password Management: Ensures security and accessibility.
+
+Account Lockouts: Occur due to multiple failed login attempts or cached credentials.
+
+Where to Find Instructions:
+
+These instructions can be found in the Active Directory Users and Computers (ADUC) management console, typically installed on domain controllers or administrative workstations with RSAT tools.
+
+Step-by-Step Instructions:
+
+a. Creating a User Account:
+
+Open Active Directory Users and Computers (ADUC).
+
+Navigate to the Organizational Unit (OU) where the user account will reside.
+
+Right-click the OU and select New > User.
+
+Fill in the user’s first name, last name, and logon name, then click Next.
+
+Set an initial password and configure password options (e.g., "User must change password at next logon").
+
+Click Finish to create the account.
+
+b. Resetting a Password:
+
+Open ADUC and locate the user account.
+
+Right-click the account and select Reset Password.
+
+Enter the new password and confirm it.
+
+Optionally, check "User must change password at next logon."
+
+Click OK.
+
+c. Unlocking a Locked Account:
+
+Locate the user account in ADUC.
+
+Right-click the account and select Properties.
+
+Go to the Account tab.
+
+Check the box labeled Unlock Account (if available).
+
+Click OK.
+
+
+
+
+2. Groups and Permissions
+
+Key Concepts:
+
+Security Groups: Used to assign permissions to resources.
+
+Distribution Groups: Used for email distribution lists.
+
+Group Scopes: Define how groups can be used across domains (Domain Local, Global, Universal).
+
+Where to Find Instructions:
+
+Group management tasks can also be performed in the ADUC console under the "Groups" section within the appropriate Organizational Unit.
+
+Step-by-Step Instructions:
+
+a. Adding a User to a Group:
+
+Open ADUC and locate the group.
+
+Right-click the group and select Properties.
+
+Go to the Members tab and click Add.
+
+Enter the username or browse for the user account.
+
+Click OK to add the user.
+
+b. Removing a User from a Group:
+
+Open ADUC and locate the group.
+
+Right-click the group and select Properties.
+
+Go to the Members tab.
+
+Select the user and click Remove.
+
+Click OK to save changes.
+
+
+
+
+3. Organizational Units (OUs) and Structure
+
+Key Concepts:
+
+OUs: Containers for organizing users, groups, and computers.
+
+Hierarchy: Reflects the organizational structure and allows delegation of administrative tasks.
+
+Where to Find Instructions:
+
+Tasks involving OUs can be managed through the ADUC console, accessible via administrative tools on a domain controller or workstation with RSAT installed.
+
+Step-by-Step Instructions:
+
+a. Moving an Object to a Different OU:
+
+Open ADUC and locate the object (user, group, or computer).
+
+Right-click the object and select Move.
+
+Choose the target OU from the list.
+
+Click OK to move the object.
+
+b. Creating a New OU:
+
+In ADUC, right-click the domain or an existing OU.
+
+Select New > Organizational Unit.
+
+Enter a name for the new OU and click OK.
+
+
+
+
+4. Group Policy Basics
+
+Key Concepts:
+
+Group Policy Objects (GPOs): Used to enforce settings across users and computers.
+
+Common Policies: Include password complexity, login scripts, and desktop restrictions.
+
+Where to Find Instructions:
+
+Group Policy settings can be managed through the Group Policy Management Console (GPMC), which is installed on domain controllers or administrative workstations with RSAT tools.
+
+Step-by-Step Instructions:
+
+a. Viewing Applied GPOs:
+
+On a user’s computer, open Command Prompt.
+
+Run the command: gpresult /r.
+
+Review the list of applied GPOs under User Settings and Computer Settings.
+
+b. Forcing a GPO Update:
+
+Open Command Prompt on the affected computer.
+
+Run the command: gpupdate /force.
+
+Wait for the process to complete and restart the computer if prompted.
+
+
+
+
+5. Basic Troubleshooting Tools
+
+Key Concepts:
+
+ADUC: Main tool for managing AD objects.
+
+Event Viewer: Used to diagnose login and authentication issues.
+
+Command-Line Tools: Useful for network and authentication troubleshooting.
+
+Where to Find Instructions:
+
+ADUC: Accessible on domain controllers or administrative workstations with RSAT tools.
+
+Event Viewer: Found on any Windows computer by searching for "Event Viewer" in the Start menu.
+
+Command-Line Tools: Available on any Windows system.
+
+Step-by-Step Instructions:
+
+a. Using Event Viewer to Check Login Issues:
+
+On the user’s computer, open Event Viewer (search for it in the Start menu).
+
+Navigate to Windows Logs > Security.
+
+Look for Event IDs related to login issues (e.g., 4625 for failed logins).
+
+b. Verifying User Details with Command-Line Tools:
+
+Open Command Prompt.
+
+Run the command: whoami to confirm the logged-in user.
+
+Run nslookup <domain> to verify DNS resolution for the domain.
