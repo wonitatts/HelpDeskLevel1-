@@ -1,0 +1,178 @@
+1. Forgotten Root Password
+Solution:
+1.	Boot into GRUB menu.
+2.	Edit the boot entry by pressing e.
+3.	Append init=/bin/bash to the kernel line.
+4.	Boot with Ctrl+X.
+5.	Mount the root filesystem: mount -o remount,rw /.
+6.	Reset password: passwd root.
+7.	Reboot: exec /sbin/init.
+________________________________________
+2. System Fails to Boot
+Solution:
+1.	Boot into rescue mode or live CD.
+2.	Check boot logs: journalctl -xb.
+3.	Verify bootloader configuration: cat /boot/grub/grub.cfg.
+4.	Repair GRUB: grub-install /dev/sdX and update-grub.
+5.	Check for disk errors: fsck /dev/sdXY.
+________________________________________
+3. Disk Space Full
+Solution:
+1.	Identify usage: df -h and du -sh /path/*.
+2.	Remove unnecessary files: rm -rf /path/to/files.
+3.	Clear package cache: apt clean or yum clean all.
+4.	Check logs: truncate -s 0 /var/log/filename.
+________________________________________
+4. Network Connectivity Issues
+Solution:
+1.	Check interface status: ip addr.
+2.	Restart network service: systemctl restart NetworkManager or service networking restart.
+3.	Test connectivity: ping 8.8.8.8.
+4.	Verify DNS: cat /etc/resolv.conf.
+5.	Check firewall rules: iptables -L or ufw status.
+________________________________________
+5. Permission Denied Errors
+Solution:
+1.	Check file permissions: ls -l /path/to/file.
+2.	Change permissions: chmod 755 /path/to/file.
+3.	Verify ownership: chown user:group /path/to/file.
+________________________________________
+6. Unable to Install Packages
+Solution:
+1.	Update repositories: apt update or yum makecache.
+2.	Fix broken dependencies: apt --fix-broken install.
+3.	Clean cache: rm -rf /var/lib/apt/lists/* and retry.
+________________________________________
+7. Slow System Performance
+Solution:
+1.	Check CPU usage: top or htop.
+2.	Identify memory hogs: free -h or vmstat.
+3.	Stop unnecessary services: systemctl stop service_name.
+4.	Clear cache: sync; echo 3 > /proc/sys/vm/drop_caches.
+________________________________________
+8. Kernel Panic
+Solution:
+1.	Reboot into a previous kernel from GRUB.
+2.	Update or reinstall the kernel: apt install --reinstall linux-image-version.
+3.	Check hardware logs: dmesg.
+________________________________________
+9. X Server Fails to Start
+Solution:
+1.	Check logs: cat /var/log/Xorg.0.log.
+2.	Reconfigure X server: dpkg-reconfigure xserver-xorg.
+3.	Verify drivers: lsmod | grep driver_name.
+________________________________________
+10. SSH Connection Issues
+Solution:
+1.	Verify service: systemctl status sshd.
+2.	Check port: netstat -tuln | grep 22.
+3.	Restart SSH: systemctl restart sshd.
+4.	Verify firewall: ufw allow 22.
+________________________________________
+11. File System Corruption
+Solution:
+1.	Boot into rescue mode.
+2.	Run fsck /dev/sdXY.
+3.	Reboot after repairs.
+________________________________________
+12. Application Crashes
+Solution:
+1.	Check logs: journalctl -xe or cat /var/log/application.log.
+2.	Restart application: systemctl restart app_name.
+3.	Update software: apt upgrade app_name.
+________________________________________
+13. High Load Average
+Solution:
+1.	Check processes: top or uptime.
+2.	Kill resource hogs: kill -9 PID.
+3.	Optimize services: Adjust configurations for high-demand services.
+________________________________________
+14. Unresponsive System
+Solution:
+1.	Switch to TTY: Ctrl+Alt+F2.
+2.	Kill processes: killall process_name.
+3.	Reboot: reboot.
+________________________________________
+15. Corrupted Configuration Files
+Solution:
+1.	Backup file: cp /etc/config /etc/config.bak.
+2.	Restore default: Refer to the package documentation.
+________________________________________
+16. Mounting Issues
+Solution:
+1.	Check mount points: mount or lsblk.
+2.	Mount manually: mount /dev/sdXY /mnt.
+3.	Update /etc/fstab if persistent mounting is needed.
+________________________________________
+17. Time Synchronization Issues
+Solution:
+1.	Install NTP: apt install ntp.
+2.	Sync time: ntpdate pool.ntp.org.
+3.	Enable service: systemctl enable ntpd.
+________________________________________
+18. Hardware Not Detected
+Solution:
+1.	Check hardware: lspci or lsusb.
+2.	Install drivers: apt install firmware-linux.
+________________________________________
+19. Library Dependency Errors
+Solution:
+1.	Check missing libraries: ldd /path/to/binary.
+2.	Install dependencies: apt install lib_name.
+________________________________________
+20. Firewall Misconfigurations
+Solution:
+1.	View rules: iptables -L or ufw status.
+2.	Adjust rules: iptables -A or ufw allow port.
+________________________________________
+21. Cron Jobs Not Running
+Solution:
+1.	Verify syntax: crontab -l.
+2.	Check logs: cat /var/log/syslog | grep CRON.
+________________________________________
+22. SELinux Denials
+Solution:
+1.	Check logs: cat /var/log/audit/audit.log.
+2.	Allow rules: setsebool -P boolean_name 1.
+________________________________________
+23. Outdated Kernel
+Solution:
+1.	Update kernel: apt install linux-image-version.
+2.	Reboot and verify: uname -r.
+________________________________________
+24. Unable to Unmount Device
+Solution:
+1.	Check usage: lsof /mnt/point.
+2.	Kill processes: kill -9 PID.
+3.	Unmount: umount /mnt/point.
+________________________________________
+25. Package Manager Lock
+Solution:
+1.	Remove lock files: rm /var/lib/dpkg/lock.
+2.	Reconfigure: dpkg --configure -a.
+________________________________________
+26. DNS Resolution Issues
+Solution:
+1.	Test DNS: dig domain.com.
+2.	Update /etc/resolv.conf with correct nameservers.
+________________________________________
+27. Stuck Processes
+Solution:
+1.	Identify process: ps aux | grep process_name.
+2.	Kill process: kill -9 PID.
+________________________________________
+28. USB Device Not Recognized
+Solution:
+1.	Check device: lsusb.
+2.	Reload USB modules: modprobe -r usb_storage && modprobe usb_storage.
+________________________________________
+29. Kernel Module Issues
+Solution:
+1.	Load module: modprobe module_name.
+2.	Check logs: dmesg | grep module_name.
+________________________________________
+30. Logs Filling Up Disk
+Solution:
+1.	Truncate logs: truncate -s 0 /var/log/filename.
+2.	Configure log rotation: /etc/logrotate.conf.
+
