@@ -1,0 +1,192 @@
+1. Slow Startup
+Solution:
+
+Press Ctrl + Shift + Esc to open Task Manager.
+Navigate to the Startup tab.
+Disable unnecessary startup programs by right-clicking and selecting Disable.
+Run msconfig and disable unnecessary services under the Services tab.
+2. Blue Screen of Death (BSOD)
+Solution:
+
+Note the error code (e.g., CRITICAL_PROCESS_DIED).
+Boot into Safe Mode by pressing F8 during startup.
+Update drivers via Device Manager or use sfc /scannow in Command Prompt.
+Check for hardware issues using Windows Memory Diagnostic.
+3. Wi-Fi Not Connecting
+Solution:
+
+Right-click the network icon and select Troubleshoot problems.
+Open Network and Sharing Center, click Change adapter settings, and disable/enable the adapter.
+Reset the network stack by running:
+perl
+Copy code
+netsh winsock reset
+netsh int ip reset
+in Command Prompt (Admin).
+4. Windows Update Failing
+Solution:
+
+Run the Windows Update Troubleshooter from Settings > Update & Security > Troubleshoot.
+Clear the SoftwareDistribution folder:
+arduino
+Copy code
+net stop wuauserv
+net stop bits
+del C:\Windows\SoftwareDistribution\* /Q /S
+net start wuauserv
+net start bits
+5. Applications Not Responding
+Solution:
+
+Press Ctrl + Shift + Esc to open Task Manager.
+Select the unresponsive application and click End Task.
+Update or reinstall the problematic application.
+6. Black Screen After Login
+Solution:
+
+Press Ctrl + Alt + Del, select Task Manager.
+Run explorer.exe via Task Manager.
+Boot into Safe Mode and update display drivers.
+7. External Drive Not Recognized
+Solution:
+
+Check if the drive appears in Disk Management (diskmgmt.msc).
+Assign a drive letter if missing.
+Update USB drivers via Device Manager.
+8. Sound Not Working
+Solution:
+
+Right-click the sound icon and select Troubleshoot sound problems.
+Check output device settings in Sound Settings.
+Update or reinstall audio drivers in Device Manager.
+9. Printer Not Working
+Solution:
+
+Run the Printer Troubleshooter.
+Reinstall the printer driver.
+Check printer queue and clear pending jobs.
+10. System Freezing
+Solution:
+
+Check for overheating by monitoring CPU/GPU temperatures.
+Update all drivers and run sfc /scannow.
+Scan for malware with Windows Defender.
+11. Windows Explorer Crashing
+Solution:
+
+Restart Windows Explorer from Task Manager.
+Clear File Explorer history in Folder Options.
+Run chkdsk /f to fix disk errors.
+12. Battery Draining Quickly (Laptop)
+Solution:
+
+Adjust power settings in Control Panel > Power Options.
+Disable background apps in Settings > Apps > Startup.
+Update BIOS and chipset drivers.
+13. Cannot Open File
+Solution:
+
+Check the file extension and install the correct application.
+Right-click the file, select Properties, and unblock it if flagged as unsafe.
+14. Windows Not Booting
+Solution:
+
+Boot into recovery mode using a bootable USB/DVD.
+Select Startup Repair.
+Run bootrec /fixmbr and bootrec /fixboot.
+15. Screen Flickering
+Solution:
+
+Boot into Safe Mode.
+Update or roll back display drivers.
+Disable hardware acceleration in apps like Chrome.
+16. Overheating
+Solution:
+
+Clean vents and fans.
+Adjust performance settings in Power Options.
+Monitor temperatures using tools like HWMonitor.
+17. Windows Search Not Working
+Solution:
+
+Restart the Windows Search service in Services.
+Rebuild the search index in Control Panel > Indexing Options.
+18. USB Device Not Recognized
+Solution:
+
+Reconnect the device to a different port.
+Update USB drivers in Device Manager.
+Uninstall the USB Root Hub and reboot.
+19. Cannot Connect to Remote Desktop
+Solution:
+
+Enable Remote Desktop in System Properties.
+Check firewall settings to allow Remote Desktop.
+Verify network connectivity.
+20. Low Disk Space
+Solution:
+
+Run Disk Cleanup.
+Delete temporary files using temp and %temp%.
+Uninstall unused applications.
+21. App Crashes on Launch
+Solution:
+
+Reinstall the app.
+Run the app as Administrator.
+Check compatibility settings.
+22. Windows Activation Issues
+Solution:
+
+Run the Activation Troubleshooter in Settings > Update & Security > Activation.
+Use a valid product key.
+23. Keyboard Not Responding
+Solution:
+
+Check if Filter Keys is enabled in Accessibility settings.
+Update or reinstall keyboard drivers.
+24. Mouse Not Working
+Solution:
+
+Reconnect the mouse to another port.
+Update mouse drivers in Device Manager.
+25. Windows Store Not Working
+Solution:
+
+Reset the Windows Store cache:
+Copy code
+wsreset.exe
+Re-register the Windows Store app:
+bash
+Copy code
+PowerShell -ExecutionPolicy Unrestricted -Command "& {Get-AppXPackage | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}}"
+26. Random Restarts
+Solution:
+
+Check Event Viewer for error logs.
+Update drivers and BIOS.
+Run a memory test using Windows Memory Diagnostic.
+27. Webcam Not Detected
+Solution:
+
+Check privacy settings in Settings > Privacy > Camera.
+Update or reinstall webcam drivers.
+28. Windows Time Incorrect
+Solution:
+
+Sync time in Settings > Time & Language.
+Update BIOS time.
+29. Missing DLL Files
+Solution:
+
+Reinstall the application that requires the DLL.
+Run sfc /scannow.
+30. Internet Running Slow
+Solution:
+
+Clear browser cache and disable unnecessary extensions.
+Flush DNS cache:
+bash
+Copy code
+ipconfig /flushdns
+Check internet speed and contact ISP if necessary.
